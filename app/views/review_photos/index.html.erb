@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all review photos
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new review photo
+    </h2>
+
+    <form action="/insert_review_photo" method="post">
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <div>
+        <label for="review_id_box">
+          Review
+        </label>
+
+        <input type="text" id="review_id_box" name="query_review_id">
+      </div>
+
+      <button>
+        Create review photo
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Review
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_review_photos.each do |a_review_photo| %>
+      <tr>
+        <td>
+          <%= a_review_photo.id %>
+        </td>
+
+        <td>
+          <%= a_review_photo.image %>
+        </td>
+
+        <td>
+          <%= a_review_photo.review_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_review_photo.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_review_photo.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/review_photos/<%= a_review_photo.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

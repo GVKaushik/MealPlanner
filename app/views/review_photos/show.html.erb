@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Review photo #<%= @the_review_photo.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/review_photos">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_review_photo/<%= @the_review_photo.id %>">
+          Delete review photo
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_review_photo.image %>
+      </dd>
+
+      <dt>
+        Review
+      </dt>
+      <dd>
+        <%= @the_review_photo.review_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_review_photo.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_review_photo.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit review photo
+    </h2>
+
+    <form action="/modify_review_photo/<%= @the_review_photo.id %>"  method="post" >
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_review_photo.image %>">
+      </div>
+
+      <div>
+        <label for="review_id_box">
+          Review
+        </label>
+
+        <input type="text" id="review_id_box" name="query_review_id" value="<%= @the_review_photo.review_id %>">
+      </div>
+
+      <button>
+        Update review photo
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
