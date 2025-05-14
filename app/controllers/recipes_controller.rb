@@ -59,4 +59,9 @@ class RecipesController < ApplicationController
 
     redirect_to("/recipes", { :notice => "Recipe deleted successfully."} )
   end
+
+  def new
+    @recipe=Recipe.new
+    render({:template=>"recipes/new"})
+  end
 end

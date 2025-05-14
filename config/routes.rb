@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  
+  root "foodie#homepage"
+  
+  get("/",{:controller=>"foodie",:action=>"homepage"})
+
+  
+  # Delete / check be
   # Routes for the Review photo resource:
 
   # CREATE
@@ -58,6 +65,5 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-root "foodie#index"
   
 end

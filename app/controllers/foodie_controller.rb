@@ -1,5 +1,5 @@
 class FoodieController < ApplicationController
-  def index
-    render({ :template => "users/index" })
+  def homepage
+    render({ :template => "foodie/homepage" })
   end
 end
