@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   root "foodie#homepage"
   
   get("/",{:controller=>"foodie",:action=>"homepage"})
-
-  
+  get("/recipes", { :controller => "recipes", :action => "index" })
+  get("/feed", { :controller => "foodie", :action => "feed" })
   # Delete / check be
   # Routes for the Review photo resource:
 
@@ -46,11 +47,9 @@ Rails.application.routes.draw do
 
   # Routes for the Recipe resource:
 
-  # CREATE
-  post("/insert_recipe", { :controller => "recipes", :action => "create" })
-          
+         
   # READ
-  get("/recipes", { :controller => "recipes", :action => "index" })
+  
   
   get("/recipes/:path_id", { :controller => "recipes", :action => "show" })
   
@@ -63,7 +62,7 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  devise_for :users
+  
 
   
 end
