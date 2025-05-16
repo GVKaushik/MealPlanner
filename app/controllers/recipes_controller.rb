@@ -1,12 +1,12 @@
 class RecipesController < ApplicationController
   def index
-    matching_recipes = Recipe.all
-
-    @list_of_recipes = matching_recipes.order({ :created_at => :desc })
+    @courses=Course.all
+    @cuisines=Cuisine.all
 
     render({ :template => "recipes/index" })
   end
 
+  #check below
   def show
     the_id = params.fetch("path_id")
 

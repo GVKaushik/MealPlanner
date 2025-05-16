@@ -29,117 +29,37 @@
 
       <div>
         <label for="course">
-          Course
+          Choose a course
         </label>
+        <select id="course" name="course">
+        <option value="" disabled selected></option>
+        <% @courses.each do |a_course| %>
+          <option value ="<%= a_course.id%>"><%= a_course.name%></option>
+        <%end%>
 
-        <input type="text" id="course" name="course">
+        </select>
       </div>
 
-      <div>
-        <label for="full_recipe_box">
-          Full recipe
-        </label>
-
-        <textarea id="full_recipe_box" name="query_full_recipe" rows="3"></textarea>
-      </div>
-
+     
       <div>
         <label for="cuisine_box">
-          Cuisine
+          Choose a cuisine
         </label>
+        <select id="cuisine" name="cuisine">
+        <option value="" disabled selected></option>
+        <% @cuisines.each do |a_cuisine| %>
+          <option value ="<%= a_cuisine.id%>"><%= a_cuisine.name%></option>
+        <%end%>
 
-        <input type="text" id="cuisine_box" name="query_cuisine">
+        </select>
       </div>
+
+        
 
       <button>
         Create recipe
       </button>
     </form>
-  </div>
-</div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Dish type
-        </th>
-
-        <th>
-          Full recipe
-        </th>
-
-        <th>
-          Cuisine
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_recipes.each do |a_recipe| %>
-      <tr>
-        <td>
-          <%= a_recipe.id %>
-        </td>
-
-        <td>
-          <%= a_recipe.user_id %>
-        </td>
-
-        <td>
-          <%= a_recipe.name %>
-        </td>
-
-        <td>
-          <%= a_recipe.dish_type %>
-        </td>
-
-        <td>
-          <%= a_recipe.full_recipe %>
-        </td>
-
-        <td>
-          <%= a_recipe.cuisine %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_recipe.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_recipe.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/recipes/<%= a_recipe.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
   </div>
 </div>
 
