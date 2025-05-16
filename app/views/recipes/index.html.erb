@@ -10,33 +10,29 @@
 
 <div>
   <div>
-    <h2>
-      Add a new recipe
-    </h2>
-
-    <form action="/insert_recipe" method="post">
+    <form action="/get_recipe" method="post">
       <div>
         <label for="user_id_box">
           User
         </label>
 
-        <input type="text" id="user_id_box" name="query_user_id">
+        <input type="text" id="user_id_box" name="user_id">
       </div>
 
       <div>
         <label for="name_box">
-          Name
+          What do you want to cook today?
         </label>
 
-        <input type="text" id="name_box" name="query_name">
+        <input type="text" id="name_box" name="dish">
       </div>
 
       <div>
-        <label for="dish_type_box">
-          Dish type
+        <label for="course">
+          Course
         </label>
 
-        <input type="text" id="dish_type_box" name="query_dish_type">
+        <input type="text" id="course" name="course">
       </div>
 
       <div>
