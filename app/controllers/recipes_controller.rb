@@ -15,6 +15,17 @@ class RecipesController < ApplicationController
 
     if the_recipe.valid?
       the_recipe.save
+      
+
+
+
+
+
+
+
+
+
+
       redirect_to("/recipes/"+the_recipe.id.to_s, { :notice => "Recipe created successfully." })
     else
       redirect_to("/recipes", { :alert => the_recipe.errors.full_messages.to_sentence })
