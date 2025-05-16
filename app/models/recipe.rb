@@ -3,10 +3,10 @@
 # Table name: recipes
 #
 #  id          :bigint           not null, primary key
+#  course      :string
 #  cuisine     :string
-#  dish_type   :string
+#  dish        :string
 #  full_recipe :text
-#  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :integer

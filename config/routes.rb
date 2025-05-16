@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  root "foodie#homepage"
+
+  # Routes for homepages
+  get("/",{:controller=>"foodie",:action=>"homepage"})
+  get("/feed", { :controller => "foodie", :action => "feed" })
   
+  # Routes for recipes
+
+  # Ask questions to send to GPT
+  get("/recipes", { :controller => "recipes", :action => "index" })
+  
+  # Receive the recipe POST and store in database
+  post("/get_recipe", {:controller=>"recipes",:action=>"create"})
+
+  # Display the recipe
+  get("/recipes/:path_id", { :controller => "recipes", :action => "show" })
+
+
   # Routes for the Course resource:
 
   # CREATE
@@ -38,22 +57,10 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  devise_for :users
-  root "foodie#homepage"
   
-  # Routes for homepages
-  get("/",{:controller=>"foodie",:action=>"homepage"})
-  get("/feed", { :controller => "foodie", :action => "feed" })
-  
-  # Routes for recipes
 
-  # Ask questions to send to GPT
-  get("/recipes", { :controller => "recipes", :action => "index" })
-  
-  # Display the recipe
-  get("/recipes/:path_id", { :controller => "recipes", :action => "show" })
 
-  # Delete / check be
+  # Delete / check below
   # Routes for the Review photo resource:
 
   # CREATE
@@ -89,21 +96,6 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_review/:path_id", { :controller => "reviews", :action => "destroy" })
-
-  #------------------------------
-
-  # Routes for the Recipe resource:
-
-         
-  # READ
-  
-  
-  
-  
-  # DELETE
-  get("/delete_recipe/:path_id", { :controller => "recipes", :action => "destroy" })
-
-  #------------------------------
 
   
 
