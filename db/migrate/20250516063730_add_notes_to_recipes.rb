@@ -3,3 +3,5 @@ class AddNotesToRecipes < ActiveRecord::Migration[7.1]
     add_column(:recipes,:notes,:text)
   end
 end
+
+

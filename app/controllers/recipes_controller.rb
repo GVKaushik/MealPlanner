@@ -44,8 +44,7 @@ No additional text or commentary—return only the JSON."
       message_hash = first_choice.fetch("message")
       func_call=message_hash.fetch("function_call")
       arguments = func_call.fetch("arguments")
-      data = JSON.parse(arguments)
-      the_recipe.full_recipe=data.to_s
+      the_recipe.full_recipe = JSON.parse(arguments)
       the_recipe.save
       redirect_to("/recipes/"+the_recipe.id.to_s, { :notice => "Recipe created successfully." })
     else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_16_063730) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_17_185119) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_16_063730) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "notes"
+    t.jsonb "ingredients", default: [], null: false
+    t.string "total_time"
+    t.jsonb "recipe_instructions", default: [], null: false
+    t.jsonb "next_meals", default: [], null: false
   end
 
   create_table "review_photos", force: :cascade do |t|

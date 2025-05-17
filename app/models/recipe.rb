@@ -2,15 +2,19 @@
 #
 # Table name: recipes
 #
-#  id          :bigint           not null, primary key
-#  course      :string
-#  cuisine     :string
-#  dish        :string
-#  full_recipe :text
-#  notes       :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  user_id     :integer
+#  id                  :bigint           not null, primary key
+#  course              :string
+#  cuisine             :string
+#  dish                :string
+#  full_recipe         :text
+#  ingredients         :jsonb            not null
+#  next_meals          :jsonb            not null
+#  notes               :text
+#  recipe_instructions :jsonb            not null
+#  total_time          :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :integer
 #
 class Recipe < ApplicationRecord
   belongs_to :user, required: true, class_name: "User", foreign_key: "user_id"
