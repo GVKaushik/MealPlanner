@@ -21,6 +21,26 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :allergies %><br />
+    <%= f.text_field :allergies %>
+  </div>
+
+  <div class="field">
+    <%= f.label :diet_preferences %><br />
+    <%= f.text_field :diet_preferences %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expertise %><br />
+    <%= f.select :expertise, ["Novice","Intermediate","Expert"] %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
