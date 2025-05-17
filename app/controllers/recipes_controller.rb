@@ -14,24 +14,24 @@ class RecipesController < ApplicationController
     the_recipe.cuisine = params.fetch("cuisine")
     the_recipe.notes = params.fetch("notes")
 
-prompt_text = "Generate a recipe as a JSON object matching our function schema. 
-Dish: #{the_recipe.dish}
-Cuisine: #{the_recipe.cuisine}
-Course (recipeCategory): #{the_recipe.course}
-Expertise level: #{current_user.expertise}
-Dietary preferences (keywords): #{current_user.diet_preferences}
-Allergies (keywords): #{current_user.allergies}
+    prompt_text = "Generate a recipe as a JSON object matching our function schema. 
+    Dish: #{the_recipe.dish}
+    Cuisine: #{the_recipe.cuisine}
+    Course (recipeCategory): #{the_recipe.course}
+    Expertise level: #{current_user.expertise}
+    Dietary preferences (keywords): #{current_user.diet_preferences}
+    Allergies (keywords): #{current_user.allergies}
 
-For each step of the instruction, mention how much time they need to do that step for.
+    For each step of the instruction, mention how much time they need to do that step for.
 
-Based on the macronutrients of this recipe and the user's profile, suggest 2 or 3 next meals optimized for balanced nutrition. The JSON must include exactly these fields:
-- recipeIngredient: an array of ingredient strings  
-- prepTime, cookTime, totalTime: ISO8601 durations (e.g. PT45M)  
-- nutrition: an object with calories, fatContent, proteinContent, carbohydrateContent  
-- recipeInstructions: an array of HowToStep objects, each with \"@type\" and \"text\"  
-- nextMeals: an array of 2 or 3 suggestion strings for what to cook next based on nutrition best practices
+    Based on the macronutrients of this recipe and the user's profile, suggest 2 or 3 next meals optimized for balanced nutrition. The JSON must include exactly these fields:
+    - recipeIngredient: an array of ingredient strings  
+    - prepTime, cookTime, totalTime: ISO8601 durations (e.g. PT45M)  
+    - nutrition: an object with calories, fatContent, proteinContent, carbohydrateContent  
+    - recipeInstructions: an array of HowToStep objects, each with \"@type\" and \"text\"  
+    - nextMeals: an array of 2 or 3 suggestion strings for what to cook next based on nutrition best practices
 
-No additional text or commentary—return only the JSON."
+    No additional text or commentary—return only the JSON."
 
     
     messages = [{role:"system",content:"You are a recipe assistant. You give detailed step by step instructions to help young adults cook food at home. Call out specific suggestions / indicators which help identify whether they are going right at each step. Include one plating suggestion and a chef's tip."},{role:"user", content:prompt_text}]

@@ -2,10 +2,31 @@
 
 <hr>
 
-<ul> 
-  <div>
-    Time needed: <%= time_conversion(@the_recipe.total_time) %>
-  </div>
-</ul>
+<div>
+  <h2> Time needed: <%= time_conversion(@the_recipe.total_time) %> </h2>
+</div>
 
-#<h1> <%= @the_recipe.full_recipe %>% </h1>
+<hr>
+
+<div>
+  <h2> Ingredients needed </h2>
+  <ul>
+  <% @the_recipe.ingredients.each do |an_ingredient| %>
+  
+    <li> <%= an_ingredient%>  </li>
+  <% end %>
+  </ul>
+</div>
+
+<div>
+  <h2> Step by step instructions </h2>
+  <ul>
+  <% @the_recipe.recipe_instructions.each do |an_instruction| %>
+  
+    <li> <%= an_instruction.fetch("text")%>  </li>
+  <% end %>
+  </ul>
+</div>
+
+
+<h1> <%= @the_recipe.full_recipe %>% </h1>
