@@ -14,20 +14,38 @@ class RecipesController < ApplicationController
     the_recipe.cuisine = params.fetch("cuisine")
     the_recipe.notes = params.fetch("notes")
 
-    prompt_text = "I need you to create a step by step recipe for #{the_recipe.dish}. More details about the dish: cuisine is #{the_recipe.cuisine}, it is a #{the_recipe.course} course. The user is #{current_user.expertise} chef. They also dietary preferences as #{current_user.diet_preferences} and are allergic to #{current_user.allergies}. The output needs to be structured as - first, give a bullet point ingredient list. Next, give approximate time to cook. Follow that with an estimate of macronutrients in this dish. Then, give a step by step recipe based on the user's profile shared earlier. Based on the user's profile and macronutrients in the current dish, give 2-3 suggestions the user can choose from for their next meal. Optimize for overall nutrition while giving suggestions."
+prompt_text = "Generate a recipe as a JSON object matching our function schema. 
+Dish: #{the_recipe.dish}
+Cuisine: #{the_recipe.cuisine}
+Course (recipeCategory): #{the_recipe.course}
+Expertise level: #{current_user.expertise}
+Dietary preferences (keywords): #{current_user.diet_preferences}
+Allergies (keywords): #{current_user.allergies}
 
-    # Swap the variable once user profile sheet is created
-    #prompt_text = "I need you to create a step by step recipe for #{the_recipe.dish}. More details about the dish: cuisine is #{the_recipe.cuisine}, it is a #{the_recipe.course} course. The output needs to be structured as - first, give a bullet point ingredient list. Next, give approximate time to cook. Follow that with an estimate of macronutrients in this dish. Then, give a step by step recipe. Based on the macronutrients in the current dish, give 2-3 suggestions the user can choose from for their next meal. Optimize for overall nutrition while giving suggestions."
+For each step of the instruction, mention how much time they need to do that step for.
+
+Based on the macronutrients of this recipe and the user's profile, suggest 2 or 3 next meals optimized for balanced nutrition. The JSON must include exactly these fields:
+- recipeIngredient: an array of ingredient strings  
+- prepTime, cookTime, totalTime: ISO8601 durations (e.g. PT45M)  
+- nutrition: an object with calories, fatContent, proteinContent, carbohydrateContent  
+- recipeInstructions: an array of HowToStep objects, each with \"@type\" and \"text\"  
+- nextMeals: an array of 2 or 3 suggestion strings for what to cook next based on nutrition best practices
+
+No additional text or commentary—return only the JSON."
+
+    
+    messages = [{role:"system",content:"You are a recipe assistant. You give detailed step by step instructions to help young adults cook food at home. Call out specific suggestions / indicators which help identify whether they are going right at each step. Include one plating suggestion and a chef's tip."},{role:"user", content:prompt_text}]
 
     if the_recipe.valid?
       
-      api_response=OPENAI_CLIENT.chat(:parameters=> {:model =>"gpt-3.5-turbo",:messages=>[{"role"=>"system","content"=> "You are a helpful recipe assistant"}, {"role"=>"user","content"=>prompt_text}]})
+      api_response=OPENAI_CLIENT.chat(:parameters=> {:model =>"gpt-3.5-turbo",:messages=>messages, functions:[RECIPE_SCHEMA],function_call:{name:"generate_recipe"}})
       choices=api_response.fetch("choices")
       first_choice=choices.at(0)
-      message_hash=first_choice.fetch("message")
-      user_recipe=message_hash.fetch("content")
-      the_recipe.full_recipe = user_recipe
-
+      message_hash = first_choice.fetch("message")
+      func_call=message_hash.fetch("function_call")
+      arguments = func_call.fetch("arguments")
+      data = JSON.parse(arguments)
+      the_recipe.full_recipe=data.to_s
       the_recipe.save
       redirect_to("/recipes/"+the_recipe.id.to_s, { :notice => "Recipe created successfully." })
     else
