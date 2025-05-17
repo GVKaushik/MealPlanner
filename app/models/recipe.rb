@@ -6,7 +6,7 @@
 #  course              :string
 #  cuisine             :string
 #  dish                :string
-#  full_recipe         :text
+#  full_recipe         :jsonb
 #  ingredients         :jsonb            not null
 #  next_meals          :jsonb            not null
 #  notes               :text

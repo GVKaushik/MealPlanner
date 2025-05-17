@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_17_185119) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_17_190451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,7 +30,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_17_185119) do
     t.integer "user_id"
     t.string "dish"
     t.string "course"
-    t.text "full_recipe"
+    t.jsonb "full_recipe", default: {}
     t.string "cuisine"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
