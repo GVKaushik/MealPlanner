@@ -203,6 +203,7 @@ GEM
     irb (1.13.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    iso8601 (0.13.0)
     jbuilder (2.12.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -476,6 +477,7 @@ DEPENDENCIES
   htmlbeautifier
   http
   importmap-rails
+  iso8601
   jbuilder
   openai-chat
   pg (~> 1.1)

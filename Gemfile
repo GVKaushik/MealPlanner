@@ -87,6 +87,7 @@ gem "simple_form"
 gem "carrierwave"
 gem "openai-chat"
 gem "ruby-openai"
+gem "iso8601"
 
 
 group :development do

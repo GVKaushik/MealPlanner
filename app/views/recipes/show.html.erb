@@ -1,1 +1,11 @@
-<h1> <%= @the_recipe.full_recipe %>% </h1>
+<h1><strong>Here is your recipe for <%=@the_recipe.dish%> </strong></h1>
+
+<hr>
+
+<ul> 
+  <div>
+    Time needed: <%= time_conversion(@the_recipe.total_time) %>
+  </div>
+</ul>
+
+#<h1> <%= @the_recipe.full_recipe %>% </h1>
