@@ -33,6 +33,7 @@
     <%calories = @the_recipe.nutrition["calories"]%>
     <%fat = @the_recipe.nutrition["fatContent"] %>
 
+<hr>
 
 <h2> This dish has: </h2>
 <ul>
@@ -42,5 +43,14 @@
   <li> Fat: <%=fat%> </li>
 </ul>
 
+<hr>
 
-<%%>
+<div>
+<h2> Suggested next meal: </h2>
+  <ul>
+  <% @the_recipe.next_meals.each do |a_meal| %>
+  
+    <li> <%= a_meal%>  </li>
+  <% end %>
+  </ul>
+</div>
