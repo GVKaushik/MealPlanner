@@ -10,9 +10,9 @@ class RecipesController < ApplicationController
     the_recipe = Recipe.new
     the_recipe.user_id = current_user.id
     the_recipe.dish = params.fetch("dish")
-    the_recipe.course = params.fetch("course")
-    the_recipe.cuisine = params.fetch("cuisine")
-    the_recipe.notes = params.fetch("notes")
+    the_recipe.course = params.fetch("course","")
+    the_recipe.cuisine = params.fetch("cuisine","")
+    the_recipe.notes = params.fetch("notes","")
 
     prompt_text = "Generate a recipe as a JSON object matching our function schema. 
     Dish: #{the_recipe.dish}
@@ -60,8 +60,7 @@ class RecipesController < ApplicationController
     end
   end
 
-
-  
+ 
   def show
     the_id=params.fetch("path_id")
     matching_recipes=Recipe.where({:id=>the_id})
