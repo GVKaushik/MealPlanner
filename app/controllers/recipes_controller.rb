@@ -50,7 +50,10 @@ class RecipesController < ApplicationController
       the_recipe.total_time = data["totalTime"]
       the_recipe.recipe_instructions = data["recipeInstructions"]
       the_recipe.next_meals = data["nextMeals"]
+      the_recipe.nutrition = data["nutrition"]
       the_recipe.save
+
+
       redirect_to("/recipes/"+the_recipe.id.to_s, { :notice => "Recipe created successfully." })
     else
       redirect_to("/recipes", { :alert => the_recipe.errors.full_messages.to_sentence })

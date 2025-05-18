@@ -10,6 +10,7 @@
 #  ingredients         :jsonb            not null
 #  next_meals          :jsonb            not null
 #  notes               :text
+#  nutrition           :jsonb            not null
 #  recipe_instructions :jsonb            not null
 #  total_time          :string
 #  created_at          :datetime         not null

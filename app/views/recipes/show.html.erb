@@ -20,15 +20,27 @@
 
 <div>
   <h2> Step by step instructions </h2>
-  <ul>
+  <ol>
   <% @the_recipe.recipe_instructions.each do |an_instruction| %>
   
     <li> <%= an_instruction.fetch("text")%>  </li>
   <% end %>
-  </ul>
+  </ol>
 </div>
 
+    <%protein = @the_recipe.nutrition["protein"]%>
+    <%carbs = @the_recipe.nutrition["carbohydrateContent"]%>
+    <%calories = @the_recipe.nutrition["calories"]%>
+    <%fat = @the_recipe.nutrition["fatContent"] %>
 
-<h2> This dash has: <%= @the_recipe.full_recipe["nutrition"] %> </h2>
+
+<h2> This dish has: </h2>
+<ul>
+  <li> Calories: <%=calories%> </li>
+  <li> Carbohydrates: <%=carbs%> </li>
+  <li> Protein: <%=protein%> </li>
+  <li> Fat: <%=fat%> </li>
+</ul>
+
 
 <%%>
