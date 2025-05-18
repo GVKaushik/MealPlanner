@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   # Ask questions to send to GPT
   get("/recipes", { :controller => "recipes", :action => "index" })
+
+  # Send to GPT
+
+  post("/get_recipe",{:controller =>"recipes",:action=>"create"})
   
   # Display the recipe
   get("/recipes/:path_id", { :controller => "recipes", :action => "show" })
