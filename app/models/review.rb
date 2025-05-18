@@ -3,7 +3,7 @@
 # Table name: reviews
 #
 #  id         :bigint           not null, primary key
-#  comment    :date
+#  feedback   :text
 #  rating     :integer
 #  repeat     :boolean
 #  created_at :datetime         not null

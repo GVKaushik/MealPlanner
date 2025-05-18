@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_18_000058) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_18_072201) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_18_000058) do
     t.integer "recipe_id"
     t.integer "user_id"
     t.integer "rating"
-    t.date "comment"
+    t.text "feedback"
     t.boolean "repeat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

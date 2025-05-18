@@ -19,6 +19,16 @@ Rails.application.routes.draw do
   # Display the recipe
   get("/recipes/:path_id", { :controller => "recipes", :action => "show" })
 
+  # Routes for reviews
+  # Input review rating and photo
+
+  get("/reviews", { :controller => "reviews", :action => "index" })
+
+  # Add review to database
+  post("/insert_review", { :controller => "reviews", :action => "create" })
+  
+  
+
   
   # Delete / check below
   # Routes for the Review photo resource:
@@ -36,28 +46,5 @@ Rails.application.routes.draw do
   post("/modify_review_photo/:path_id", { :controller => "review_photos", :action => "update" })
   
   # DELETE
-  get("/delete_review_photo/:path_id", { :controller => "review_photos", :action => "destroy" })
-
-  #------------------------------
-
-  # Routes for the Review resource:
-
-  # CREATE
-  post("/insert_review", { :controller => "reviews", :action => "create" })
-          
-  # READ
-  get("/reviews", { :controller => "reviews", :action => "index" })
-  
-  get("/reviews/:path_id", { :controller => "reviews", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_review/:path_id", { :controller => "reviews", :action => "update" })
-  
-  # DELETE
-  get("/delete_review/:path_id", { :controller => "reviews", :action => "destroy" })
-
-  
-
-  
+  get("/delete_review_photo/:path_id", { :controller => "review_photos", :action => "destroy" })  
 end

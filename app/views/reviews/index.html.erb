@@ -1,148 +1,37 @@
-<div>
-  <div>
-    <h1>
-      List of all reviews
-    </h1>
-  </div>
-</div>
-
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new review
-    </h2>
-
-    <form action="/insert_review" method="post">
-      <div>
-        <label for="recipe_id_box">
-          Recipe
-        </label>
-
-        <input type="text" id="recipe_id_box" name="query_recipe_id">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
+  <hr>
+  <form action="/insert_review" method="post">
+      
+      <input type="hidden" name="recipe_id" value="<%=@the_recipe_id%>">
+      
+      
+      
       <div>
         <label for="rating_box">
-          Rating
+          What is your rating on scale of 1-5?
         </label>
 
-        <input type="text" id="rating_box" name="query_rating">
+        <input type="integer" id="rating_box" name="rating">
       </div>
 
       <div>
-        <label for="comment_box">
-          Comment
+        <label for="feedback_box">
+          Any other feedback?
         </label>
 
-        <input type="date" id="comment_box" name="query_comment">
+        <input type="text" id="feedback_box" name="feedback">
       </div>
 
+      
       <div>
-        <input type="checkbox" id="repeat_box" name="query_repeat" value="1">
+        <input type="checkbox" id="repeat_box" name="repeat" value="1">
 
-        <label for="repeat_box">Repeat</label>
+        <label for="repeat_box">Do you want to re-use the same recipe later?</label>
       </div>
 
       <button>
-        Create review
+        Share feedback
       </button>
     </form>
-  </div>
-</div>
 
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Recipe
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Rating
-        </th>
-
-        <th>
-          Comment
-        </th>
-
-        <th>
-          Repeat
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_reviews.each do |a_review| %>
-      <tr>
-        <td>
-          <%= a_review.id %>
-        </td>
-
-        <td>
-          <%= a_review.recipe_id %>
-        </td>
-
-        <td>
-          <%= a_review.user_id %>
-        </td>
-
-        <td>
-          <%= a_review.rating %>
-        </td>
-
-        <td>
-          <%= a_review.comment %>
-        </td>
-
-        <td>
-          <%= a_review.repeat %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_review.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_review.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/reviews/<%= a_review.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
 
 <hr>
