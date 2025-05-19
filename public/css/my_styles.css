@@ -1,0 +1,26 @@
+/* 1) Ensure default text is dark on white */
+body {
+  background-color: #ffffff;
+  color: #212529;
+}
+
+/* 2) Hero: full viewport minus navbar (56px) */
+.hero {
+  position: relative;
+  height: calc(100vh - 56px);
+  background: url('https://source.unsplash.com/1600x900/?fresh,ingredients')
+              center/cover no-repeat;
+}
+
+/* 3) Dark overlay so light text pops */
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* 4) Bring hero content above overlay */
+.hero .hero-content {
+  position: relative;
+  z-index: 1;
+}
